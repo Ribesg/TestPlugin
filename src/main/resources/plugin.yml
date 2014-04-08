@@ -7,6 +7,7 @@ version: ${project.version}
 
 # load: POSTWORLD
 
-# commands:
-#   foo:
-#     description: Test stuff
+commands:
+  glow:
+    description: Toggle glow on held item
+    default: true
