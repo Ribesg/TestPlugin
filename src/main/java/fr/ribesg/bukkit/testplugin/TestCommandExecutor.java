@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.util.Map;
 import java.util.logging.Logger;
 
 /** @author Ribesg */
@@ -20,6 +21,7 @@ public class TestCommandExecutor implements CommandExecutor {
 	public TestCommandExecutor(final TestPlugin plugin) {
 		this.plugin = plugin;
 		this.plugin.getCommand("glow").setExecutor(this);
+		this.plugin.getCommand("serialize").setExecutor(this);
 	}
 
 	@Override
@@ -51,6 +53,22 @@ public class TestCommandExecutor implements CommandExecutor {
 					player.sendMessage(ChatColor.RED + "Failed to enable glowing effect: /!\\ this should not be possible!");
 				}
 			}
+			return true;
+		} else if ("serialize".equals(cmd.getName())) {
+			if (!(sender instanceof Player)) {
+				sender.sendMessage(ChatColor.RED + "A Player you should be, that command to use");
+				return true;
+			}
+			final Player player = (Player) sender;
+			final ItemStack is = player.getItemInHand();
+			if (is == null || is.getType() == Material.AIR) {
+				player.sendMessage(ChatColor.RED + "I'm too powerful to serialize Air.");
+				return true;
+			}
+			final Map<String, Object> serialized = is.serialize();
+			final ItemStack deserialized = ItemStack.deserialize(serialized);
+			player.getInventory().setItem((player.getInventory().getHeldItemSlot() + 1) % 9, deserialized);
+			player.sendMessage(ChatColor.GREEN + "Woosh!");
 			return true;
 		}
 		return false;

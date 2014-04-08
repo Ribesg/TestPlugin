@@ -11,3 +11,6 @@ commands:
   glow:
     description: Toggle glow on held item
     default: true
+  serialize:
+    description: Serialize item held by user and deserialize it in the next slot
+    default: true
