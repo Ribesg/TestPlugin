@@ -36,7 +36,7 @@ public class TestCommandExecutor implements CommandExecutor {
 				return true;
 			}
 			final ItemMeta meta = is.getItemMeta();
-			final boolean changed = meta.setGlow(meta.hasGlow());
+			final boolean changed = meta.setGlow(!meta.hasGlow());
 			if (changed) {
 				if (meta.hasGlow()) {
 					player.sendMessage(ChatColor.GREEN + "Glowing effect enabled!");
