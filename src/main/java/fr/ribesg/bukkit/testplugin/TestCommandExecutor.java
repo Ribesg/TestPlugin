@@ -58,7 +58,7 @@ public class TestCommandExecutor implements CommandExecutor {
     private void sendAchievements(Player player) {
         RichMessage achievs = new RichMessage();
         for(Achievement a : Achievement.values()) {
-            achievs.append(new RichMessagePart(a.name(), null, new AchievementHoverAction(a)));
+            achievs.append(new RichMessagePart(a.name() + " / ", null, new AchievementHoverAction(a)));
         }
         player.sendRichMessage(achievs);
     }
@@ -66,7 +66,7 @@ public class TestCommandExecutor implements CommandExecutor {
     private void sendItems(Player player) {
         RichMessage items = new RichMessage();
         for(Material m : Material.values()) {
-            items.append(new RichMessagePart(m.name(), null, new ItemHoverAction(new ItemStack(m))));
+            items.append(new RichMessagePart(m.name() + " / ", null, new ItemHoverAction(new ItemStack(m))));
         }
         player.sendRichMessage(items);
     }
