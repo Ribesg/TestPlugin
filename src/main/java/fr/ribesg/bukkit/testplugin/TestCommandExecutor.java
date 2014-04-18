@@ -104,7 +104,7 @@ public class TestCommandExecutor implements CommandExecutor {
 			player.sendRichMessage(new RichMessage().append("Test 7: linebreak =>").append("\nTest 7!"));
 		}
 
-		if (all || value == 7) {
+		if (all || value == 8) {
 			player.sendRichMessage(new RichMessage().append("Test 8: linebreak =>").append("\n").append("Test 8!"));
 		}
 
