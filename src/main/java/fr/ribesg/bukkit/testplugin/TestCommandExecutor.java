@@ -3,8 +3,12 @@ import org.bukkit.Achievement;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.chat.AchievementMessagePart;
+import org.bukkit.chat.ChatAction;
+import org.bukkit.chat.CustomMessagePart;
 import org.bukkit.chat.ItemMessagePart;
+import org.bukkit.chat.OpenUrlAction;
 import org.bukkit.chat.RichMessage;
+import org.bukkit.chat.SuggestChatAction;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -82,7 +86,8 @@ public class TestCommandExecutor implements CommandExecutor {
 					ChatColor.AQUA + "Awesomness +7",
 					ChatColor.AQUA + "Stupidity -4",
 					" ",
-					"" + ChatColor.DARK_BLUE + ChatColor.ITALIC + "Built by " + ChatColor.RED + ChatColor.MAGIC + "Ribesg"
+					"" + ChatColor.DARK_BLUE + ChatColor.ITALIC + "Built by " + ChatColor.RED + ChatColor.MAGIC + "Ribesg",
+					"%*éàùòß"
 			));
 			is.setItemMeta(meta);
 			player.sendRichMessage(new RichMessage().append(ChatColor.RED + "Test 4: ").append(new ItemMessagePart(is)));
@@ -106,6 +111,32 @@ public class TestCommandExecutor implements CommandExecutor {
 
 		if (all || value == 8) {
 			player.sendRichMessage(new RichMessage().append("Test 8: linebreak =>").append("\n").append("Test 8!"));
+		}
+
+		if (all || value == 9) {
+			player.sendRichMessage(new RichMessage().append(new CustomMessagePart("Test 9a: hover", "hovered")));
+			player.sendRichMessage(new RichMessage().append(new CustomMessagePart("Test 9b: hover", "line 1", "line 2")));
+			player.sendRichMessage(new RichMessage().append(new CustomMessagePart("Test 9b: hover",
+				ChatColor.RED + "l"
+				+ ChatColor.YELLOW + ChatColor.BOLD + "i"
+				+ ChatColor.GREEN + "n"
+				+ ChatColor.UNDERLINE + "e"
+				+ ChatColor.RESET + " "
+				+ ChatColor.BLUE + ChatColor.MAGIC + "1"
+			)));
+		}
+
+		if(all || value == 10) {
+			player.sendRichMessage(new RichMessage().append("Test 10a:").append(
+				new CustomMessagePart(" Click me to talk", new SuggestChatAction("/me loves Bukkit"), "Click me!")));
+			player.sendRichMessage(new RichMessage().append("Test 10b:").append(
+				new CustomMessagePart(" Click me to talk", new ChatAction("/me loves Bukkit"), "Click me!")));
+		}
+
+		if(all || value == 11) {
+			player.sendRichMessage(new RichMessage().append("Test 11: ").append(
+				new CustomMessagePart(ChatColor.ITALIC + "opening an url", new OpenUrlAction("http://google.com"), "This is a link")
+			));
 		}
 
 		return spoke;
