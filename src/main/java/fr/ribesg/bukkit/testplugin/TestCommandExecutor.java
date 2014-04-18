@@ -1,7 +1,10 @@
 package fr.ribesg.bukkit.testplugin;
+import org.bukkit.Achievement;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.chat.*;
+import org.bukkit.chat.AchievementMessagePart;
+import org.bukkit.chat.ItemMessagePart;
+import org.bukkit.chat.RichMessage;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -54,17 +57,17 @@ public class TestCommandExecutor implements CommandExecutor {
 		boolean spoke = false;
 
 		if (all || value == 1) {
-			player.sendRichMessage(new RichMessage("Test 1", null, null));
+			player.sendRichMessage(new RichMessage().append("Test 1"));
 			spoke = true;
 		}
 
 		if (all || value == 2) {
-			player.sendRichMessage(new RichMessage(ChatColor.RED + "Test 2", null, null));
+			player.sendRichMessage(new RichMessage().append(ChatColor.RED + "Test 2"));
 			spoke = true;
 		}
 
 		if (all || value == 3) {
-			player.sendRichMessage(new RichMessage(ChatColor.RED + "Test 3: ", null, null).append(new ItemMessagePart(new ItemStack(Material.GOLDEN_APPLE))));
+			player.sendRichMessage(new RichMessage().append(ChatColor.RED + "Test 3: ").append(new ItemMessagePart(new ItemStack(Material.GOLDEN_APPLE))));
 			spoke = true;
 		}
 
@@ -75,15 +78,34 @@ public class TestCommandExecutor implements CommandExecutor {
 			is.addUnsafeEnchantment(Enchantment.LOOT_BONUS_MOBS, 10);
 			final ItemMeta meta = is.getItemMeta();
 			meta.setDisplayName("" + ChatColor.RED + ChatColor.BOLD + "Red" + ChatColor.GOLD + ChatColor.BOLD + " Sword of War " + ChatColor.BOLD + ChatColor.MAGIC + "42");
-			meta.setLore(Arrays.asList(new String[] {
+			meta.setLore(Arrays.asList(
 					ChatColor.AQUA + "Awesomness +7",
 					ChatColor.AQUA + "Stupidity -4",
 					" ",
 					"" + ChatColor.DARK_BLUE + ChatColor.ITALIC + "Built by " + ChatColor.RED + ChatColor.MAGIC + "Ribesg"
-			}));
+			));
 			is.setItemMeta(meta);
-			player.sendRichMessage(new RichMessage(ChatColor.RED + "Test 4: ", null, null).append(new ItemMessagePart(is)));
+			player.sendRichMessage(new RichMessage().append(ChatColor.RED + "Test 4: ").append(new ItemMessagePart(is)));
 			spoke = true;
+		}
+
+		if (all || value == 5) {
+			final Achievement a1 = Achievement.OPEN_INVENTORY;
+			final Achievement a2 = Achievement.THE_END;
+			player.sendRichMessage(new RichMessage().append(ChatColor.RED + "Test 5a: ").append(new AchievementMessagePart(a1)));
+			player.sendRichMessage(new RichMessage().append(ChatColor.RED + "Test 5b: ").append(new AchievementMessagePart(a2, "Test 5")));
+		}
+
+		if (all || value == 6) {
+			player.sendRichMessage(new RichMessage().append("Test 6: linebreak =>\nTest 6!"));
+		}
+
+		if (all || value == 7) {
+			player.sendRichMessage(new RichMessage().append("Test 7: linebreak =>").append("\nTest 7!"));
+		}
+
+		if (all || value == 7) {
+			player.sendRichMessage(new RichMessage().append("Test 8: linebreak =>").append("\n").append("Test 8!"));
 		}
 
 		return spoke;
