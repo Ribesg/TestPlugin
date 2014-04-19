@@ -137,7 +137,7 @@ public class TestCommandExecutor implements CommandExecutor {
 		}
 		
 		if (all || value == 12) {
-			player.sendRichMessage(new RichMessage("&é\"'(-è_çà)=°+^$*ù!:;,?./§%¨£µ'"));
+			player.sendRichMessage(new RichMessage().append("&é\"'(-è_çà)=°+^$*ù!:;,?./§%¨£µ'"));
 		}
 
 		return spoke;
