@@ -71,7 +71,7 @@ public class TestCommandExecutor implements CommandExecutor {
 		}
 
 		if (all || value == 3) {
-			player.sendRichMessage(new RichMessage().append(ChatColor.RED + "Test 3: ").append(new ItemMessagePart(new ItemStack(Material.GOLDEN_APPLE))));
+			player.sendRichMessage(new RichMessage().append(ChatColor.RED + "Test 3: ").append(new ItemStack(Material.GOLDEN_APPLE)));
 			spoke = true;
 		}
 
@@ -90,15 +90,15 @@ public class TestCommandExecutor implements CommandExecutor {
 					"%*éàùòß"
 			));
 			is.setItemMeta(meta);
-			player.sendRichMessage(new RichMessage().append(ChatColor.RED + "Test 4: ").append(new ItemMessagePart(is)));
+			player.sendRichMessage(new RichMessage().append(ChatColor.RED + "Test 4: ").append(is));
 			spoke = true;
 		}
 
 		if (all || value == 5) {
 			final Achievement a1 = Achievement.OPEN_INVENTORY;
 			final Achievement a2 = Achievement.THE_END;
-			player.sendRichMessage(new RichMessage().append(ChatColor.RED + "Test 5a: ").append(new AchievementMessagePart(a1)));
-			player.sendRichMessage(new RichMessage().append(ChatColor.RED + "Test 5b: ").append(new AchievementMessagePart(a2, "Test 5")));
+			player.sendRichMessage(new RichMessage().append(ChatColor.RED + "Test 5a: ").append(a1));
+			player.sendRichMessage(new RichMessage().append(ChatColor.RED + "Test 5b: ").append(a2, "Test 5"));
 		}
 
 		if (all || value == 6) {
@@ -114,9 +114,9 @@ public class TestCommandExecutor implements CommandExecutor {
 		}
 
 		if (all || value == 9) {
-			player.sendRichMessage(new RichMessage().append(new CustomMessagePart("Test 9a: hover", "hovered")));
-			player.sendRichMessage(new RichMessage().append(new CustomMessagePart("Test 9b: hover", "line 1", "line 2")));
-			player.sendRichMessage(new RichMessage().append(new CustomMessagePart("Test 9b: hover",
+			player.sendRichMessage(new RichMessage().append("Test 9a: hover", "hovered"));
+			player.sendRichMessage(new RichMessage().append("Test 9b: hover", "line 1", "line 2"));
+			player.sendRichMessage(new RichMessage().append("Test 9b: hover",
 				ChatColor.RED + "l"
 				+ ChatColor.YELLOW + ChatColor.BOLD + "i"
 				+ ChatColor.GREEN + "n"
@@ -124,7 +124,7 @@ public class TestCommandExecutor implements CommandExecutor {
 				+ ChatColor.RESET + " "
 				+ ChatColor.BLUE + ChatColor.MAGIC + "1",
 			    "Blah"
-			)));
+			));
 		}
 
 		if(all || value == 10) {
