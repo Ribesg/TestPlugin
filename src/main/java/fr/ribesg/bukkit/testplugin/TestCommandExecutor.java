@@ -6,6 +6,7 @@ import org.bukkit.chat.AchievementMessagePart;
 import org.bukkit.chat.ChatAction;
 import org.bukkit.chat.CustomMessagePart;
 import org.bukkit.chat.ItemMessagePart;
+import org.bukkit.chat.LocalizedString;
 import org.bukkit.chat.OpenUrlAction;
 import org.bukkit.chat.RichMessage;
 import org.bukkit.chat.SuggestChatAction;
@@ -141,11 +142,11 @@ public class TestCommandExecutor implements CommandExecutor {
 		}
 
 		if (all || value == 13) {
-			player.sendRichMessage(new RichMessage("Test 13: ").append(new LocalizedText("stream.userinfo.unmod")));
+			player.sendRichMessage(new RichMessage("Test 13: ").append(new LocalizedString("stream.userinfo.unmod")));
 		}
 
 		if (all || value == 14) {
-			player.sendRichMessage(new RichMessage("Test 14: ").append(new LocalizedText("commands.scoreboard.players.reset.success", "Notch")));
+			player.sendRichMessage(new RichMessage("Test 14: ").append(new LocalizedString("commands.scoreboard.players.reset.success", "Notch")));
 		}
 
 		return spoke;
