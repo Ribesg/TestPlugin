@@ -122,21 +122,22 @@ public class TestCommandExecutor implements CommandExecutor {
 				+ ChatColor.GREEN + "n"
 				+ ChatColor.UNDERLINE + "e"
 				+ ChatColor.RESET + " "
-				+ ChatColor.BLUE + ChatColor.MAGIC + "1"
+				+ ChatColor.BLUE + ChatColor.MAGIC + "1",
+			    "Blah"
 			)));
 		}
 
 		if(all || value == 10) {
-			player.sendRichMessage(new RichMessage().append("Test 10a:").append(
-				new CustomMessagePart(" Click me to talk", new SuggestChatAction("/me loves Bukkit"), "Click me!")));
-			player.sendRichMessage(new RichMessage().append("Test 10b:").append(
-				new CustomMessagePart(" Click me to talk", new ChatAction("/me loves Bukkit"), "Click me!")));
+			player.sendRichMessage(new RichMessage().append("Test 10a:").append(" Click me to talk", new SuggestChatAction("/me loves Bukkit"), "Click me!"));
+			player.sendRichMessage(new RichMessage().append("Test 10b:").append(" Click me to talk", new ChatAction("/me loves Bukkit"), "Click me!"));
 		}
 
 		if(all || value == 11) {
-			player.sendRichMessage(new RichMessage().append("Test 11: ").append(
-				new CustomMessagePart(ChatColor.ITALIC + "opening an url", new OpenUrlAction("http://google.com"), "This is a link")
-			));
+			player.sendRichMessage(new RichMessage().append("Test 11: ").append(ChatColor.ITALIC + "opening an url", new OpenUrlAction("http://google.com"), "This is a link"));
+		}
+		
+		if (all || value == 12) {
+			player.sendRichMessage(new RichMessage("&é\"'(-è_çà)=°+^$*ù!:;,?./§%¨£µ'"));
 		}
 
 		return spoke;
