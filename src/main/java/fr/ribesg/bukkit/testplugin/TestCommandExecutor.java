@@ -93,18 +93,22 @@ public class TestCommandExecutor implements CommandExecutor {
             final Achievement a2 = Achievement.THE_END;
             player.sendRichMessage(new RichMessage(ChatColor.RED + "Test 5a: ").append(a1));
             player.sendRichMessage(new RichMessage(ChatColor.RED + "Test 5b: ").append(a2, "Test 5"));
+            spoke = true;
         }
 
         if (all || value == 6) {
             player.sendRichMessage(new RichMessage("Test 6: linebreak =>\nTest 6!"));
+            spoke = true;
         }
 
         if (all || value == 7) {
             player.sendRichMessage(new RichMessage("Test 7: linebreak =>").append("\nTest 7!"));
+            spoke = true;
         }
 
         if (all || value == 8) {
             player.sendRichMessage(new RichMessage("Test 8: linebreak =>").append("\n").append("Test 8!"));
+            spoke = true;
         }
 
         if (all || value == 9) {
@@ -119,43 +123,53 @@ public class TestCommandExecutor implements CommandExecutor {
                             + ChatColor.BLUE + ChatColor.MAGIC + "1",
                     "Blah"
             ));
+            spoke = true;
         }
 
         if (all || value == 10) {
             player.sendRichMessage(new RichMessage("Test 10a:").append(" Click me to talk", new SuggestChatAction("/me loves Bukkit"), "Click me!"));
             player.sendRichMessage(new RichMessage("Test 10b:").append(" Click me to talk", new ChatAction("/me loves Bukkit"), "Click me!"));
+            spoke = true;
         }
 
         if (all || value == 11) {
             player.sendRichMessage(new RichMessage("Test 11: ").append(ChatColor.ITALIC + "opening an url", new OpenUrlAction("http://google.com"), "This is a link"));
+            spoke = true;
         }
 
         if (all || value == 12) {
             player.sendRichMessage(new RichMessage("Test 12: &é\"'(-è_çà)=°+^$*ù!:;,?./§%¨£µ'"));
+            spoke = true;
         }
 
         if (all || value == 13) {
             player.sendRichMessage(new RichMessage("Test 13: ").append(new LocalizedString("stream.userinfo.unmod")));
+            spoke = true;
         }
 
         if (all || value == 14) {
             player.sendRichMessage(new RichMessage("Test 14: ").append(new LocalizedString("commands.scoreboard.players.reset.success", "Notch")));
+            spoke = true;
         }
 
         if (all || value == 15) {
             plugin.getServer().broadcastMessage(new RichMessage("Test 15: ").append("User broadcast", "Come buy some lilipads"));
+            spoke = true;
         }
 
         if (all || value == 16) {
             plugin.getServer().broadcast(new RichMessage("Test 16: ").append("Admin broadcast", "if you read this, you're an admin"), Server.BROADCAST_CHANNEL_ADMINISTRATIVE);
+            spoke = true;
         }
 
         if (all || value == 17) {
             plugin.getServer().broadcastMessage(new RichMessage(ChatColor.GREEN + "Test 17: ").append(ChatColor.RED + "Console test", "if you read this, you're not the console"));
+            spoke = true;
         }
 
         if (all || value == 18) {
             Bukkit.broadcast(new RichMessage(ChatColor.YELLOW + "Test 18: ").append(new LocalizedString("commands.scoreboard.players.reset.success", "Notch"), "bendem hates JavaDocs!"), Server.BROADCAST_CHANNEL_USERS);
+            spoke = true;
         }
 
         if (all || value == 19) {
@@ -175,6 +189,7 @@ public class TestCommandExecutor implements CommandExecutor {
                 textPart.setText(" <= This is a '" + is.getType() + "'");
                 player.sendRichMessage(message);
             }
+            spoke = true;
         }
 
         return spoke;
