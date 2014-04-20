@@ -11,6 +11,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.material.Tree;
 
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -198,13 +199,21 @@ public class TestCommandExecutor implements CommandExecutor {
         if (value == 20) {
             // Caching test
             final List<RichMessage> messages1 = new LinkedList<RichMessage>();
-            for (int i = 10000; i < 60000; i++) {
+            for (int i = 0; i < 10000; i++) {
                 messages1.add(new RichMessage("Test 20a: " + i));
             }
             final RichMessage message2 = new RichMessage("Test 20b: idem");
             final List<RichMessage> messages2 = new LinkedList<RichMessage>();
-            for (int i = 10000; i < 60000; i++) {
+            for (int i = 0; i < 10000; i++) {
                 messages2.add(message2);
+            }
+
+            // Dummy execution #1 to prevent false results
+            for (final RichMessage m : messages1) {
+                player.sendRichMessage(m);
+            }
+            for (final RichMessage m : messages2) {
+                player.sendRichMessage(m);
             }
 
             long start1 = System.nanoTime();
@@ -214,13 +223,37 @@ public class TestCommandExecutor implements CommandExecutor {
             long end1 = System.nanoTime();
 
             long start2 = System.nanoTime();
-            for (final RichMessage m : messages1) {
+            for (final RichMessage m : messages2) {
                 player.sendRichMessage(m);
             }
             long end2 = System.nanoTime();
 
-            System.out.println("Sent " + messages1.size() + " different messages: " + (end1 - start1));
-            System.out.println("Sent " + messages2.size() + " identical messages: " + (end2 - start2));
+            // Dummy execution #2 to prevent false results
+            for (final RichMessage m : messages2) {
+                player.sendRichMessage(m);
+            }
+            for (final RichMessage m : messages1) {
+                player.sendRichMessage(m);
+            }
+
+            long start3 = System.nanoTime();
+            for (final RichMessage m : messages2) {
+                player.sendRichMessage(m);
+            }
+            long end3 = System.nanoTime();
+
+            long start4 = System.nanoTime();
+            for (final RichMessage m : messages1) {
+                player.sendRichMessage(m);
+            }
+            long end4 = System.nanoTime();
+
+            final DecimalFormat f = new DecimalFormat("#.###");
+            System.out.println("Sent " + messages1.size() + " different messages #1: " + f.format((end1 - start1) / 1000000.0) + " ms");
+            System.out.println("Sent " + messages2.size() + " identical messages #1: " + f.format((end2 - start2) / 1000000.0) + " ms");
+            System.out.println("Sent " + messages1.size() + " different messages #2: " + f.format((end4 - start4) / 1000000.0) + " ms");
+            System.out.println("Sent " + messages2.size() + " identical messages #2: " + f.format((end3 - start3) / 1000000.0) + " ms");
+            player.sendMessage("Done");
             spoke = true;
         }
 
