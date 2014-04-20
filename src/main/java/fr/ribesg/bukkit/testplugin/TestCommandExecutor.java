@@ -5,12 +5,15 @@ import org.bukkit.chat.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.InvalidConfigurationException;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.material.Tree;
 
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -255,6 +258,40 @@ public class TestCommandExecutor implements CommandExecutor {
             System.out.println("Sent " + messages2.size() + " identical messages #2: " + f.format((end3 - start3) / 1000000.0) + " ms");
             player.sendMessage("Done");
             spoke = true;
+        }
+
+        if (value == 21) {
+            final ItemStack is = new ItemStack(Material.STONE_SWORD);
+            is.setDurability((short) (Material.STONE_SWORD.getMaxDurability() / 2));
+            is.addEnchantment(Enchantment.DAMAGE_ALL, 5);
+            is.addUnsafeEnchantment(Enchantment.LOOT_BONUS_MOBS, 10);
+            final ItemMeta meta = is.getItemMeta();
+            meta.setDisplayName("" + ChatColor.RED + ChatColor.BOLD + "Red" + ChatColor.GOLD + ChatColor.BOLD + " Sword of War " + ChatColor.BOLD + "n°42");
+            meta.setLore(Arrays.asList(
+                    ChatColor.AQUA + "Awesomness +7",
+                    ChatColor.AQUA + "Stupidity -4",
+                    " ",
+                    "" + ChatColor.DARK_BLUE + ChatColor.ITALIC + "Built by " + ChatColor.RED + "Ribesg",
+                    "%*éàùòß"
+            ));
+            is.setItemMeta(meta);
+            final RichMessage message = new RichMessage(ChatColor.RED + "Test 21: ", "Here's a tooltip", "another line", ChatColor.RED + "A red one").append(is).append(Achievement.BOOKCASE, "KNOWLEDGE!");
+
+            final YamlConfiguration config = new YamlConfiguration();
+            config.set("richMessage", message);
+            try {
+                config.save("tmp.yml");
+                System.out.println(config.saveToString());
+                config.load("tmp.yml");
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (InvalidConfigurationException e) {
+                e.printStackTrace();
+            }
+
+            final RichMessage message2 = (RichMessage) config.get("richMessage");
+            player.sendRichMessage(message);
+            player.sendRichMessage(message2);
         }
 
         return spoke;
