@@ -184,8 +184,9 @@ public class TestCommandExecutor implements CommandExecutor {
             // Let's modify it
             char c = 'a';
             for (final TreeSpecies tree : TreeSpecies.values()) {
+                is = new Tree(tree).toItemStack();
                 testNb.setText(ChatColor.AQUA + "Test 19" + c++ + ": ");
-                itemPart.setItem(new Tree(tree).toItemStack());
+                itemPart.setItem(is);
                 textPart.setText(is.getType().name());
                 player.sendRichMessage(message);
             }
