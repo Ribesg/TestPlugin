@@ -177,8 +177,8 @@ public class TestCommandExecutor implements CommandExecutor {
             final CustomMessagePart testNb = new CustomMessagePart(ChatColor.AQUA + "Test 19: ");
             ItemStack is = new ItemStack(Material.APPLE);
             final ItemMessagePart itemPart = new ItemMessagePart(is);
-            final CustomMessagePart textPart = new CustomMessagePart(" <= This is a '" + is.getType() + "'");
-            final RichMessage message = new RichMessage(testNb).append(itemPart).append(textPart);
+            final CustomMessagePart textPart = new CustomMessagePart(is.getType().name());
+            final RichMessage message = new RichMessage(testNb).append(itemPart).append(" <= This is a '").append(textPart).append("'");
             player.sendRichMessage(message);
 
             // Let's modify it
@@ -186,7 +186,7 @@ public class TestCommandExecutor implements CommandExecutor {
             for (final TreeSpecies tree : TreeSpecies.values()) {
                 testNb.setText(ChatColor.AQUA + "Test 19" + c++ + ": ");
                 itemPart.setItem(new Tree(tree).toItemStack());
-                textPart.setText(" <= This is a '" + is.getType() + "'");
+                textPart.setText(is.getType().name());
                 player.sendRichMessage(message);
             }
             spoke = true;
