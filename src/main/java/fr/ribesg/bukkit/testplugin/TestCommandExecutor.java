@@ -9,6 +9,7 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.material.Tree;
 
 import java.util.Arrays;
 import java.util.logging.Logger;
@@ -155,6 +156,22 @@ public class TestCommandExecutor implements CommandExecutor {
 
         if (all || value == 18) {
             Bukkit.broadcast(new RichMessage(ChatColor.YELLOW + "Test 18: ").append(new LocalizedString("commands.scoreboard.players.reset.success", "Notch"), "bendem hates JavaDocs!"), Server.BROADCAST_CHANNEL_USERS);
+        }
+
+        if (all || value == 19) {
+            // Modifiable RichMessage example
+            ItemStack is = new ItemStack(Material.APPLE);
+            final ItemMessagePart itemPart = new ItemMessagePart(is);
+            final CustomMessagePart textPart = new CustomMessagePart(" <= This is a '" + is.getType() + "'");
+            final RichMessage message = new RichMessage(ChatColor.AQUA + "Test 19: ").append(itemPart).append(textPart);
+            player.sendRichMessage(message);
+
+            // Let's modify it
+            for (final TreeSpecies tree : TreeSpecies.values()) {
+                itemPart.setItem(new Tree(tree).toItemStack());
+                textPart.setText(" <= This is a '" + is.getType() + "'");
+                player.sendRichMessage(message);
+            }
         }
 
         return spoke;
