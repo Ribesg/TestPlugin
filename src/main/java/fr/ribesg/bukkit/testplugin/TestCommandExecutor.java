@@ -12,6 +12,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.material.Tree;
 
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.logging.Logger;
 
 /**
@@ -190,6 +192,35 @@ public class TestCommandExecutor implements CommandExecutor {
                 textPart.setText(is.getType().name());
                 player.sendRichMessage(message);
             }
+            spoke = true;
+        }
+
+        if (value == 20) {
+            // Caching test
+            final List<RichMessage> messages1 = new LinkedList<RichMessage>();
+            for (int i = 10000; i < 60000; i++) {
+                messages1.add(new RichMessage("Test 20a: " + i));
+            }
+            final RichMessage message2 = new RichMessage("Test 20b: idem");
+            final List<RichMessage> messages2 = new LinkedList<RichMessage>();
+            for (int i = 10000; i < 60000; i++) {
+                messages2.add(message2);
+            }
+
+            long start1 = System.nanoTime();
+            for (final RichMessage m : messages1) {
+                player.sendRichMessage(m);
+            }
+            long end1 = System.nanoTime();
+
+            long start2 = System.nanoTime();
+            for (final RichMessage m : messages1) {
+                player.sendRichMessage(m);
+            }
+            long end2 = System.nanoTime();
+
+            System.out.println("Sent " + messages1.size() + " different messages: " + (end1 - start1));
+            System.out.println("Sent " + messages2.size() + " identical messages: " + (end2 - start2));
             spoke = true;
         }
 
