@@ -152,6 +152,10 @@ public class TestCommandExecutor implements CommandExecutor {
             plugin.getServer().broadcast(new RichMessage("Test 16: ").append("Admin broadcast", "if you read this, you're an admin"), Server.BROADCAST_CHANNEL_ADMINISTRATIVE);
         }
 
+        if (all || value == 17) {
+            plugin.getServer().broadcastMessage(new RichMessage(ChatColor.GREEN + "Test 17: ").append(ChatColor.RED + "Console test", "if you read this, you're not the console"));
+        }
+
         return spoke;
     }
 }
