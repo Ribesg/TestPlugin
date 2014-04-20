@@ -149,12 +149,12 @@ public class TestCommandExecutor implements CommandExecutor {
         }
 
         if (all || value == 13) {
-            player.sendRichMessage(new RichMessage("Test 13: ").append(new LocalizedString("stream.userinfo.unmod")));
+            player.sendRichMessage(new RichMessage("Test 13: ").append(new LocalizedText("stream.userinfo.unmod")));
             spoke = true;
         }
 
         if (all || value == 14) {
-            player.sendRichMessage(new RichMessage("Test 14: ").append(new LocalizedString("commands.scoreboard.players.reset.success", "Notch")));
+            player.sendRichMessage(new RichMessage("Test 14: ").append(new LocalizedText("commands.scoreboard.players.reset.success", "Notch")));
             spoke = true;
         }
 
@@ -174,7 +174,7 @@ public class TestCommandExecutor implements CommandExecutor {
         }
 
         if (all || value == 18) {
-            Bukkit.broadcast(new RichMessage(ChatColor.YELLOW + "Test 18: ").append(new LocalizedString("commands.scoreboard.players.reset.success", "Notch"), "bendem hates JavaDocs!"), Server.BROADCAST_CHANNEL_USERS);
+            Bukkit.broadcast(new RichMessage(ChatColor.YELLOW + "Test 18: ").append(new LocalizedText("commands.scoreboard.players.reset.success", "Notch"), "bendem hates JavaDocs!"), Server.BROADCAST_CHANNEL_USERS);
             spoke = true;
         }
 
