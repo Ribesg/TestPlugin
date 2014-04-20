@@ -110,7 +110,7 @@ public class TestCommandExecutor implements CommandExecutor {
         if (all || value == 9) {
             player.sendRichMessage(new RichMessage("Test 9a: hover", "hovered"));
             player.sendRichMessage(new RichMessage("Test 9b: hover", "line 1", "line 2"));
-            player.sendRichMessage(new RichMessage("Test 9b: hover",
+            player.sendRichMessage(new RichMessage("Test 9c: hover",
                     ChatColor.RED + "l"
                             + ChatColor.YELLOW + ChatColor.BOLD + "i"
                             + ChatColor.GREEN + "n"
@@ -160,14 +160,17 @@ public class TestCommandExecutor implements CommandExecutor {
 
         if (all || value == 19) {
             // Modifiable RichMessage example
+            final CustomMessagePart testNb = new CustomMessagePart(ChatColor.AQUA + "Test 19: ");
             ItemStack is = new ItemStack(Material.APPLE);
             final ItemMessagePart itemPart = new ItemMessagePart(is);
             final CustomMessagePart textPart = new CustomMessagePart(" <= This is a '" + is.getType() + "'");
-            final RichMessage message = new RichMessage(ChatColor.AQUA + "Test 19: ").append(itemPart).append(textPart);
+            final RichMessage message = new RichMessage(testNb).append(itemPart).append(textPart);
             player.sendRichMessage(message);
 
             // Let's modify it
+            char c = 'a';
             for (final TreeSpecies tree : TreeSpecies.values()) {
+                testNb.setText(ChatColor.AQUA + "Test 19" + c++ + ": ");
                 itemPart.setItem(new Tree(tree).toItemStack());
                 textPart.setText(" <= This is a '" + is.getType() + "'");
                 player.sendRichMessage(message);
