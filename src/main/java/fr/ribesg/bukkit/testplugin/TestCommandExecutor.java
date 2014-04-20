@@ -3,6 +3,7 @@ package fr.ribesg.bukkit.testplugin;
 import org.bukkit.Achievement;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.Server;
 import org.bukkit.chat.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -141,6 +142,14 @@ public class TestCommandExecutor implements CommandExecutor {
 
         if (all || value == 14) {
             player.sendRichMessage(new RichMessage("Test 14: ").append(new LocalizedString("commands.scoreboard.players.reset.success", "Notch")));
+        }
+
+        if (all || value == 15) {
+            plugin.getServer().broadcastMessage(new RichMessage("Test 15: ").append("User broadcast", "Come buy some lilipads"));
+        }
+
+        if (all || value == 16) {
+            plugin.getServer().broadcast(new RichMessage("Test 16: ").append("Admin broadcast", "if you read this, you're an admin"), Server.BROADCAST_CHANNEL_ADMINISTRATIVE);
         }
 
         return spoke;
