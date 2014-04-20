@@ -1,9 +1,6 @@
 package fr.ribesg.bukkit.testplugin;
 
-import org.bukkit.Achievement;
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.Server;
+import org.bukkit.*;
 import org.bukkit.chat.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -154,6 +151,10 @@ public class TestCommandExecutor implements CommandExecutor {
 
         if (all || value == 17) {
             plugin.getServer().broadcastMessage(new RichMessage(ChatColor.GREEN + "Test 17: ").append(ChatColor.RED + "Console test", "if you read this, you're not the console"));
+        }
+
+        if (all || value == 18) {
+            Bukkit.broadcast(new RichMessage(ChatColor.YELLOW + "Test 18: ").append(new LocalizedString("commands.scoreboard.players.reset.success", "Notch"), "bendem hates JavaDocs!"), Server.BROADCAST_CHANNEL_USERS);
         }
 
         return spoke;
