@@ -61,17 +61,17 @@ public class TestCommandExecutor implements CommandExecutor {
         boolean spoke = false;
 
         if (all || value == 1) {
-            player.sendRichMessage(new RichMessage("Test 1"));
+            player.sendMessage(new RichMessage("Test 1"));
             spoke = true;
         }
 
         if (all || value == 2) {
-            player.sendRichMessage(new RichMessage(ChatColor.RED + "Test 2"));
+            player.sendMessage(new RichMessage(ChatColor.RED + "Test 2"));
             spoke = true;
         }
 
         if (all || value == 3) {
-            player.sendRichMessage(new RichMessage(ChatColor.RED + "Test 3: ").append(new ItemStack(Material.GOLDEN_APPLE)));
+            player.sendMessage(new RichMessage(ChatColor.RED + "Test 3: ").append(new ItemStack(Material.GOLDEN_APPLE)));
             spoke = true;
         }
 
@@ -90,37 +90,37 @@ public class TestCommandExecutor implements CommandExecutor {
                     "%*éàùòß"
             ));
             is.setItemMeta(meta);
-            player.sendRichMessage(new RichMessage(ChatColor.RED + "Test 4: ").append(is));
+            player.sendMessage(new RichMessage(ChatColor.RED + "Test 4: ").append(is));
             spoke = true;
         }
 
         if (all || value == 5) {
             final Achievement a1 = Achievement.OPEN_INVENTORY;
             final Achievement a2 = Achievement.THE_END;
-            player.sendRichMessage(new RichMessage(ChatColor.RED + "Test 5a: ").append(a1));
-            player.sendRichMessage(new RichMessage(ChatColor.RED + "Test 5b: ").append(a2, "Test 5"));
+            player.sendMessage(new RichMessage(ChatColor.RED + "Test 5a: ").append(a1));
+            player.sendMessage(new RichMessage(ChatColor.RED + "Test 5b: ").append(a2, "Test 5"));
             spoke = true;
         }
 
         if (all || value == 6) {
-            player.sendRichMessage(new RichMessage("Test 6: linebreak =>\nTest 6!"));
+            player.sendMessage(new RichMessage("Test 6: linebreak =>\nTest 6!"));
             spoke = true;
         }
 
         if (all || value == 7) {
-            player.sendRichMessage(new RichMessage("Test 7: linebreak =>").append("\nTest 7!"));
+            player.sendMessage(new RichMessage("Test 7: linebreak =>").append("\nTest 7!"));
             spoke = true;
         }
 
         if (all || value == 8) {
-            player.sendRichMessage(new RichMessage("Test 8: linebreak =>").append("\n").append("Test 8!"));
+            player.sendMessage(new RichMessage("Test 8: linebreak =>").append("\n").append("Test 8!"));
             spoke = true;
         }
 
         if (all || value == 9) {
-            player.sendRichMessage(new RichMessage("Test 9a: hover", "hovered"));
-            player.sendRichMessage(new RichMessage("Test 9b: hover", "line 1", "line 2"));
-            player.sendRichMessage(new RichMessage("Test 9c: hover",
+            player.sendMessage(new RichMessage("Test 9a: hover", "hovered"));
+            player.sendMessage(new RichMessage("Test 9b: hover", "line 1", "line 2"));
+            player.sendMessage(new RichMessage("Test 9c: hover",
                     ChatColor.RED + "l"
                             + ChatColor.YELLOW + ChatColor.BOLD + "i"
                             + ChatColor.GREEN + "n"
@@ -133,28 +133,28 @@ public class TestCommandExecutor implements CommandExecutor {
         }
 
         if (all || value == 10) {
-            player.sendRichMessage(new RichMessage("Test 10a:").append(" Click me to talk", new SuggestChatAction("/me loves Bukkit"), "Click me!"));
-            player.sendRichMessage(new RichMessage("Test 10b:").append(" Click me to talk", new ChatAction("/me loves Bukkit"), "Click me!"));
+            player.sendMessage(new RichMessage("Test 10a:").append(" Click me to talk", new SuggestChatAction("/me loves Bukkit"), "Click me!"));
+            player.sendMessage(new RichMessage("Test 10b:").append(" Click me to talk", new ChatAction("/me loves Bukkit"), "Click me!"));
             spoke = true;
         }
 
         if (all || value == 11) {
-            player.sendRichMessage(new RichMessage("Test 11: ").append(ChatColor.ITALIC + "opening an url", new OpenUrlAction("http://google.com"), "This is a link"));
+            player.sendMessage(new RichMessage("Test 11: ").append(ChatColor.ITALIC + "opening an url", new OpenUrlAction("http://google.com"), "This is a link"));
             spoke = true;
         }
 
         if (all || value == 12) {
-            player.sendRichMessage(new RichMessage("Test 12: &é\"'(-è_çà)=°+^$*ù!:;,?./§%¨£µ'"));
+            player.sendMessage(new RichMessage("Test 12: &é\"'(-è_çà)=°+^$*ù!:;,?./§%¨£µ'"));
             spoke = true;
         }
 
         if (all || value == 13) {
-            player.sendRichMessage(new RichMessage("Test 13: ").append(new LocalizedText("stream.userinfo.unmod")));
+            player.sendMessage(new RichMessage("Test 13: ").append(new LocalizedText("stream.userinfo.unmod")));
             spoke = true;
         }
 
         if (all || value == 14) {
-            player.sendRichMessage(new RichMessage("Test 14: ").append(new LocalizedText("commands.scoreboard.players.reset.success", "Notch")));
+            player.sendMessage(new RichMessage("Test 14: ").append(new LocalizedText("commands.scoreboard.players.reset.success", "Notch")));
             spoke = true;
         }
 
@@ -185,7 +185,7 @@ public class TestCommandExecutor implements CommandExecutor {
             final ItemMessagePart itemPart = new ItemMessagePart(is);
             final CustomMessagePart textPart = new CustomMessagePart(is.getType().name());
             final RichMessage message = new RichMessage(testNb).append(itemPart).append(" <= This is a '").append(textPart).append("'");
-            player.sendRichMessage(message);
+            player.sendMessage(message);
 
             // Let's modify it
             char c = 'a';
@@ -194,7 +194,7 @@ public class TestCommandExecutor implements CommandExecutor {
                 testNb.setText(ChatColor.AQUA + "Test 19" + c++ + ": ");
                 itemPart.setItem(is);
                 textPart.setText(is.getType().name());
-                player.sendRichMessage(message);
+                player.sendMessage(message);
             }
             spoke = true;
         }
@@ -213,41 +213,41 @@ public class TestCommandExecutor implements CommandExecutor {
 
             // Dummy execution #1 to prevent false results
             for (final RichMessage m : messages1) {
-                player.sendRichMessage(m);
+                player.sendMessage(m);
             }
             for (final RichMessage m : messages2) {
-                player.sendRichMessage(m);
+                player.sendMessage(m);
             }
 
             long start1 = System.nanoTime();
             for (final RichMessage m : messages1) {
-                player.sendRichMessage(m);
+                player.sendMessage(m);
             }
             long end1 = System.nanoTime();
 
             long start2 = System.nanoTime();
             for (final RichMessage m : messages2) {
-                player.sendRichMessage(m);
+                player.sendMessage(m);
             }
             long end2 = System.nanoTime();
 
             // Dummy execution #2 to prevent false results
             for (final RichMessage m : messages2) {
-                player.sendRichMessage(m);
+                player.sendMessage(m);
             }
             for (final RichMessage m : messages1) {
-                player.sendRichMessage(m);
+                player.sendMessage(m);
             }
 
             long start3 = System.nanoTime();
             for (final RichMessage m : messages2) {
-                player.sendRichMessage(m);
+                player.sendMessage(m);
             }
             long end3 = System.nanoTime();
 
             long start4 = System.nanoTime();
             for (final RichMessage m : messages1) {
-                player.sendRichMessage(m);
+                player.sendMessage(m);
             }
             long end4 = System.nanoTime();
 
@@ -290,8 +290,8 @@ public class TestCommandExecutor implements CommandExecutor {
             }
 
             final RichMessage message2 = (RichMessage) config.get("richMessage");
-            player.sendRichMessage(message);
-            player.sendRichMessage(message2);
+            player.sendMessage(message);
+            player.sendMessage(message2);
         }
 
         return spoke;
