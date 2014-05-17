@@ -292,6 +292,7 @@ public class TestCommandExecutor implements CommandExecutor {
             final RichMessage message2 = (RichMessage) config.get("richMessage");
             player.sendMessage(message);
             player.sendMessage(message2);
+            spoke = true;
         }
 
         return spoke;
