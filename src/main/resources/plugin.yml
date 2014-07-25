@@ -5,8 +5,8 @@ description: ${project.description}
 url: ${project.url}
 version: ${project.version}
 
-# load: POSTWORLD
+load: POSTWORLD
 
-# commands:
-#   foo:
-#     description: Test stuff
+commands:
+  chat:
+    description: Test stuff
