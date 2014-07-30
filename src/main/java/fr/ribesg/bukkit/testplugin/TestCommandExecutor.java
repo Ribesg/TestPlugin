@@ -2,6 +2,7 @@ package fr.ribesg.bukkit.testplugin;
 
 import org.bukkit.*;
 import org.bukkit.chat.Click;
+import org.bukkit.chat.Hover;
 import org.bukkit.chat.Message;
 import org.bukkit.chat.Part;
 import org.bukkit.command.Command;
@@ -185,7 +186,7 @@ public class TestCommandExecutor implements CommandExecutor {
             for (final TreeSpecies tree : TreeSpecies.values()) {
                 is = new Tree(tree).toItemStack();
                 testNb.setText(ChatColor.AQUA + "Test 19" + c++ + ": ");
-                itemPart.getHover().setItem(is);
+                itemPart.setHover(Hover.of(is));
                 textPart.setText(is.getType().name());
                 player.sendMessage(message);
             }
