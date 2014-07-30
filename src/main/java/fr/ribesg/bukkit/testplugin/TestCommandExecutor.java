@@ -290,6 +290,15 @@ public class TestCommandExecutor implements CommandExecutor {
             spoke = true;
         }
         */
+        
+        if (value == 22) {
+            try {
+                player.sendMessage(Message.of("Test 22: ").append("Text", "HoverLine1", null, "HoverLine3"));
+                player.sendMessage("Test 22: failed!");
+            } catch (Exception e) {
+                player.sendMessage("Test 22: ok!");
+            }
+        }
 
         return spoke;
     }
